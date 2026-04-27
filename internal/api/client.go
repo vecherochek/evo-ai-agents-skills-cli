@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
 )
 
 type Client struct {

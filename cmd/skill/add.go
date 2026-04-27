@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/di"
 	"github.com/spf13/cobra"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/di"
 )
 
 var addOptions struct {

@@ -1,4 +1,4 @@
-module github.com/cloud-ru/evo-ai-agents-skills-cli
+module github.com/vecherochek/evo-ai-agents-skills-cli
 
 go 1.25.2
 

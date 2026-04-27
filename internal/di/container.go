@@ -4,11 +4,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/api"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/config"
 	"github.com/samber/do/v2"
 	"github.com/samber/oops"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/api"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/config"
 )
 
 type Container struct {

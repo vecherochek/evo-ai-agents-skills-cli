@@ -4,9 +4,9 @@ import (
 	"os"
 
 	"github.com/charmbracelet/log"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/cmd/auth"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/cmd/skill"
 	"github.com/spf13/cobra"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/cmd/auth"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/cmd/skill"
 )
 
 var (

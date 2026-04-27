@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	authinternal "github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
 	"github.com/spf13/cobra"
+	authinternal "github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
 )
 
 var configCmd = &cobra.Command{

@@ -2,13 +2,13 @@
 
 <div align="center">
 
-[![Build Status](https://github.com/cloud-ru/evo-ai-agents-skills-cli/workflows/CI/badge.svg)](https://github.com/cloud-ru/evo-ai-agents-skills-cli/actions)
+[![Build Status](https://github.com/vecherochek/evo-ai-agents-skills-cli/workflows/CI/badge.svg)](https://github.com/vecherochek/evo-ai-agents-skills-cli/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Go Version](https://img.shields.io/badge/Go-1.25.2+-blue.svg)](https://golang.org/)
-[![Release](https://img.shields.io/github/v/release/cloud-ru/evo-ai-agents-skills-cli)](https://github.com/cloud-ru/evo-ai-agents-skills-cli/releases)
-[![GitHub stars](https://img.shields.io/github/stars/cloud-ru/evo-ai-agents-skills-cli.svg?style=flat-square&label=Stars)](https://github.com/cloud-ru/evo-ai-agents-skills-cli/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/cloud-ru/evo-ai-agents-skills-cli.svg?style=flat-square&label=Forks)](https://github.com/cloud-ru/evo-ai-agents-skills-cli/network/members)
-[![Issues](https://img.shields.io/github/issues/cloud-ru/evo-ai-agents-skills-cli.svg?style=flat-square)](https://github.com/cloud-ru/evo-ai-agents-skills-cli/issues)
+[![Release](https://img.shields.io/github/v/release/vecherochek/evo-ai-agents-skills-cli)](https://github.com/vecherochek/evo-ai-agents-skills-cli/releases)
+[![GitHub stars](https://img.shields.io/github/stars/vecherochek/evo-ai-agents-skills-cli.svg?style=flat-square&label=Stars)](https://github.com/vecherochek/evo-ai-agents-skills-cli/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/vecherochek/evo-ai-agents-skills-cli.svg?style=flat-square&label=Forks)](https://github.com/vecherochek/evo-ai-agents-skills-cli/network/members)
+[![Issues](https://img.shields.io/github/issues/vecherochek/evo-ai-agents-skills-cli.svg?style=flat-square)](https://github.com/vecherochek/evo-ai-agents-skills-cli/issues)
 
 **CLI инструмент для загрузки, авторизации и локальной установки AI Skills из Cloud.ru BFF**
 
@@ -35,13 +35,13 @@
 ### macOS/Linux (go install)
 
 ```bash
-go install github.com/cloud-ru/evo-ai-agents-skills-cli@latest
+go install github.com/vecherochek/evo-ai-agents-skills-cli@latest
 ```
 
 ### Сборка из исходников
 
 ```bash
-git clone https://github.com/cloud-ru/evo-ai-agents-skills-cli.git
+git clone https://github.com/vecherochek/evo-ai-agents-skills-cli.git
 cd evo-ai-agents-skills-cli
 go mod tidy
 go build -o bin/skills-cli .

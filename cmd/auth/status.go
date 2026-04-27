@@ -3,8 +3,8 @@ package auth
 import (
 	"fmt"
 
-	authinternal "github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
 	"github.com/spf13/cobra"
+	authinternal "github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
 )
 
 var statusCmd = &cobra.Command{

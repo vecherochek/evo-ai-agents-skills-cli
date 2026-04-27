@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/charmbracelet/log"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/cmd"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/di"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/cmd"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/di"
 )
 
 func main() {

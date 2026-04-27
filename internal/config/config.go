@@ -3,8 +3,8 @@ package config
 import (
 	"github.com/caarlos0/env/v11"
 	"github.com/charmbracelet/log"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
 )
 
 type Config struct {

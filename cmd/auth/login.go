@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	authinternal "github.com/cloud-ru/evo-ai-agents-skills-cli/internal/auth"
-	"github.com/cloud-ru/evo-ai-agents-skills-cli/internal/config"
 	"github.com/spf13/cobra"
+	authinternal "github.com/vecherochek/evo-ai-agents-skills-cli/internal/auth"
+	"github.com/vecherochek/evo-ai-agents-skills-cli/internal/config"
 )
 
 var loginOptions struct {

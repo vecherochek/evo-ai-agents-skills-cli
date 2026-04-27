@@ -1,0 +1,134 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            platform: linux
+          - os: macos-latest
+            platform: darwin
+          - os: windows-latest
+            platform: windows
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.2'
+          cache: true
+
+      - name: Build binary (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: go build -o ai-agents-skills-cli .
+
+      - name: Build binary (Windows)
+        if: runner.os == 'Windows'
+        run: go build -o ai-agents-skills-cli.exe .
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: ai-agents-skills-cli-${{ matrix.platform }}
+          path: |
+            ai-agents-skills-cli*
+            !ai-agents-skills-cli*.zip
+          retention-days: 30
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag or set default
+        id: get_version
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
+          if [ -z "$LATEST_TAG" ]; then
+            echo "new_version=0.1.0" >> $GITHUB_OUTPUT
+            echo "new_tag=v0.1.0" >> $GITHUB_OUTPUT
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag v0.1.0
+            git push origin v0.1.0
+          else
+            VERSION=${LATEST_TAG#v}
+            IFS='.' read -r major minor patch <<< "$VERSION"
+            NEW_PATCH=$((patch + 1))
+            NEW_VERSION="$major.$minor.$NEW_PATCH"
+            NEW_TAG="v$NEW_VERSION"
+            echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+            echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag $NEW_TAG
+            git push origin $NEW_TAG
+          fi
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v5
+        with:
+          pattern: ai-agents-skills-cli-*
+          path: artifacts/
+
+      - name: Prepare release files
+        run: |
+          mkdir -p release
+
+          if [ -f artifacts/ai-agents-skills-cli-linux/ai-agents-skills-cli ]; then
+            cp artifacts/ai-agents-skills-cli-linux/ai-agents-skills-cli release/ai-agents-skills-cli-linux
+            chmod +x release/ai-agents-skills-cli-linux
+          fi
+
+          if [ -f artifacts/ai-agents-skills-cli-darwin/ai-agents-skills-cli ]; then
+            cp artifacts/ai-agents-skills-cli-darwin/ai-agents-skills-cli release/ai-agents-skills-cli-darwin
+            chmod +x release/ai-agents-skills-cli-darwin
+          fi
+
+          if [ -f artifacts/ai-agents-skills-cli-windows/ai-agents-skills-cli.exe ]; then
+            cp artifacts/ai-agents-skills-cli-windows/ai-agents-skills-cli.exe release/ai-agents-skills-cli-windows.exe
+          fi
+
+          echo "Release files:"
+          ls -lah release/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.new_tag }}
+          draft: false
+          prerelease: false
+          files: release/*
+          body: |
+            ## Release ${{ steps.get_version.outputs.new_tag }}
+
+            Automated build from main branch.
+
+            ### Installation
+
+            - Linux: `ai-agents-skills-cli-linux`
+            - macOS: `ai-agents-skills-cli-darwin`
+            - Windows: `ai-agents-skills-cli-windows.exe`
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

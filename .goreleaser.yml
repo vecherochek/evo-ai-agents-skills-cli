@@ -1,0 +1,62 @@
+project_name: ai-agents-skills-cli
+
+before:
+  hooks:
+    - go mod download
+    - go mod tidy
+
+builds:
+  - id: ai-agents-skills-cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    binary: ai-agents-skills-cli
+    main: ./main.go
+    ldflags:
+      - -s -w
+    ignore:
+      - goos: windows
+        goarch: arm64
+
+archives:
+  - id: default
+    name_template: "ai-agents-skills-cli-{{ .Os }}-{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+      - goos: linux
+        format: tar.gz
+      - goos: darwin
+        format: tar.gz
+    files:
+      - README.md
+      - .env.example
+
+checksum:
+  algorithm: sha256
+  name_template: "ai-agents-skills-cli-checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}-SNAPSHOT"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "merge"
+      - "Merge"
+
+release:
+  mode: replace
+  github:
+    owner: vecherochek
+    name: evo-ai-agents-skills-cli

@@ -5,7 +5,7 @@ import "github.com/spf13/cobra"
 var RootCMD = &cobra.Command{
 	Use:   "auth",
 	Short: "Authentication management",
-	Long: `Manage authentication for skills-cli.
+	Long: `Manage authentication for ai-agents-skills-cli.
 
 Available commands:
   login   - Save IAM credentials

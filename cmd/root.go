@@ -14,7 +14,7 @@ var (
 )
 
 var RootCMD = &cobra.Command{
-	Use:   "skills-cli",
+	Use:   "ai-agents-skills-cli",
 	Short: "CLI for managing AI assistant skills",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		verbose, _ := cmd.Flags().GetBool("verbose")

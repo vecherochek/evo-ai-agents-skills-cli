@@ -14,7 +14,7 @@ var statusCmd = &cobra.Command{
 		manager := authinternal.NewCredentialsManager()
 		if !manager.HasCredentials() {
 			fmt.Println("❌ Credentials are not configured.")
-			fmt.Println("💡 Run: skills-cli auth login")
+			fmt.Println("💡 Run: ai-agents-skills-cli auth login")
 			return nil
 		}
 

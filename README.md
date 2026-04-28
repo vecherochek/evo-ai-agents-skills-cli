@@ -31,6 +31,26 @@
 
 ## 🚀 Установка
 
+### Windows (winget) (Скоро)
+
+```powershell
+winget install CloudRu.AIAgentsSkillsCLI
+```
+
+### Windows (Scoop) (Скоро)
+
+```powershell
+scoop bucket add cloud-ru https://github.com/cloud-ru/scoop-bucket
+scoop install ai-agents-skills-cli
+```
+
+### macOS/Linux (Homebrew) (Скоро)
+
+```bash
+brew tap cloud-ru/evo-ai-agents-skills-cli
+brew install ai-agents-skills-cli
+```
+
 ### macOS/Linux (go install)
 
 ```bash
@@ -39,28 +59,42 @@ go install github.com/vecherochek/evo-ai-agents-skills-cli@latest
 
 ### Ручная установка (через GitHub Releases)
 
-#### macOS
-
-```bash
-curl -L https://github.com/vecherochek/evo-ai-agents-skills-cli/releases/latest/download/ai-agents-skills-cli-darwin -o ai-agents-skills-cli
-sudo mv ai-agents-skills-cli /usr/local/bin/
-sudo chmod +x /usr/local/bin/ai-agents-skills-cli
-ai-agents-skills-cli --version
-```
-
 #### Linux
 
 ```bash
-curl -L https://github.com/vecherochek/evo-ai-agents-skills-cli/releases/latest/download/ai-agents-skills-cli-linux -o ai-agents-skills-cli
-sudo mv ai-agents-skills-cli /usr/local/bin/
+# Скачайте последнюю версию
+wget https://github.com/vecherochek/evo-ai-agents-skills-cli/releases/latest/download/ai-agents-skills-cli-linux
+
+# Установите
+sudo mv ai-agents-skills-cli-linux /usr/local/bin/ai-agents-skills-cli
 sudo chmod +x /usr/local/bin/ai-agents-skills-cli
+
+# Проверьте установку
+ai-agents-skills-cli --version
+```
+
+#### macOS
+
+```bash
+# Скачайте последнюю версию
+curl -L https://github.com/vecherochek/evo-ai-agents-skills-cli/releases/latest/download/ai-agents-skills-cli-darwin -o ai-agents-skills-cli
+
+# Установите
+sudo mv ai-agents-skills-cli /usr/local/bin/ai-agents-skills-cli
+sudo chmod +x /usr/local/bin/ai-agents-skills-cli
+
+# Проверьте установку
 ai-agents-skills-cli --version
 ```
 
 #### Windows (PowerShell)
 
 ```powershell
+# Скачайте последнюю версию
 Invoke-WebRequest -Uri "https://github.com/vecherochek/evo-ai-agents-skills-cli/releases/latest/download/ai-agents-skills-cli-windows.exe" -OutFile "ai-agents-skills-cli.exe"
+
+# Добавьте директорию в PATH или запускайте из текущей папки
+# Проверка установки
 .\ai-agents-skills-cli.exe --version
 ```
 

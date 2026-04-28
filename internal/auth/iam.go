@@ -3,6 +3,7 @@ package auth
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -41,11 +42,16 @@ func NewIAMAuthService(keyID, secret, endpoint string) *IAMAuthService {
 	if endpoint == "" {
 		endpoint = "https://iam.api.cloud.ru"
 	}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // Отключает проверку сертификата
+		},
+	}
 	return &IAMAuthService{
 		keyID:    keyID,
 		secret:   secret,
 		endpoint: endpoint,
-		client:   &http.Client{Timeout: 30 * time.Second},
+		client:   &http.Client{Timeout: 30 * time.Second, Transport: tr},
 	}
 }
 

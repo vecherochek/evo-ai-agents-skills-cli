@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"net/http"
@@ -29,10 +30,16 @@ func NewClient(baseURL string, timeoutSec int, authService auth.IAMAuthServiceIn
 		timeout = 60 * time.Second
 	}
 
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
+	}
+
 	return &Client{
 		baseURL:    strings.TrimRight(base, "/"),
 		timeout:    timeout,
-		httpClient: &http.Client{Timeout: timeout},
+		httpClient: &http.Client{Timeout: timeout, Transport: tr},
 		auth:       authService,
 	}, nil
 }

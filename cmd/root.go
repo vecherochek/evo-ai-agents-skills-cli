@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/vecherochek/evo-ai-agents-skills-cli/cmd/auth"
 	"github.com/vecherochek/evo-ai-agents-skills-cli/cmd/skill"
+	skillmarketplace "github.com/vecherochek/evo-ai-agents-skills-cli/cmd/skill_marketplace"
 )
 
 var (
@@ -35,4 +36,5 @@ func init() {
 	RootCMD.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Enable verbose logs")
 	RootCMD.AddCommand(auth.RootCMD)
 	RootCMD.AddCommand(skill.RootCMD)
+	RootCMD.AddCommand(skillmarketplace.RootCMD)
 }

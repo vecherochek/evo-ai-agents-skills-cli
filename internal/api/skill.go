@@ -29,7 +29,20 @@ func (s *SkillService) DownloadAndExtract(projectID, skillID, authHeader, output
 	}
 
 	path := fmt.Sprintf("/api/v1/%s/skills/%s/.well-known/skills/archive.zip", projectID, skillID)
+	return s.downloadAndExtract(path, authHeader, outputDir)
+}
 
+func (s *SkillService) DownloadMarketplaceAndExtract(skillID, authHeader, outputDir string) error {
+	skillID = strings.TrimSpace(skillID)
+	if skillID == "" {
+		return fmt.Errorf("skill ID is required")
+	}
+
+	path := fmt.Sprintf("/api/v1/marketplace/skills/%s/.well-known/skills/archive.zip", skillID)
+	return s.downloadAndExtract(path, authHeader, outputDir)
+}
+
+func (s *SkillService) downloadAndExtract(path, authHeader, outputDir string) error {
 	body, statusCode, err := s.client.Get(path, authHeader)
 	if err != nil {
 		return fmt.Errorf("download archive: %w", err)

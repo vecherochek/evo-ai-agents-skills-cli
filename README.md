@@ -193,6 +193,7 @@ ls ./skills
 | Команда | Описание |
 |---------|----------|
 | `skill add` | Скачать и распаковать skill archive |
+| `skill-marketplace add` | Скачать и распаковать marketplace skill archive |
 
 #### Флаги `skill add`
 
@@ -204,6 +205,14 @@ ls ./skills
 | `--auth-header` | Явный `Authorization` заголовок | ❌ |
 
 \* Обязателен как `--project-id` или через `PROJECT_ID` в окружении.
+
+#### Флаги `skill-marketplace add`
+
+| Флаг | Описание | Обязательный |
+|------|----------|--------------|
+| `--skill-id` | ID marketplace скилла | ✅ |
+| `--output` | Директория распаковки | ❌ |
+| `--auth-header` | Явный `Authorization` заголовок | ❌ |
 
 ---
 
@@ -238,6 +247,14 @@ export IAM_SECRET="<iam-secret>"
 export IAM_ENDPOINT="https://iam.api.cloud.ru"
 
 ai-agents-skills-cli skill add --skill-id "6d2f66f6-7f31-44b1-92c7-7b4db978abcd"
+```
+
+### Загрузка скилла из marketplace
+
+```bash
+ai-agents-skills-cli skill-marketplace add \
+  --skill-id "6d2f66f6-7f31-44b1-92c7-7b4db978abcd" \
+  --output "./skills"
 ```
 
 ---
@@ -276,6 +293,7 @@ ai-agents-skills-cli skill add --skill-id "6d2f66f6-7f31-44b1-92c7-7b4db978abcd"
 
 ```text
 GET /api/v1/projects/{project_id}/skills/{skill_id}/.well-known/skills/archive.zip
+GET /api/v1/marketplace/skills/{skill_id}/.well-known/skills/archive.zip
 ```
 
 ---
